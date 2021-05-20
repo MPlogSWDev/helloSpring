@@ -19,30 +19,30 @@ public class HelloSpringController {
 //    }
 
     // lives at /hello/goodbye
-    @GetMapping("goodbye")
-    public String goodbye() {
-        return "Goodbye, Spring!";
-    }
+//    @GetMapping("goodbye")
+//    public String goodbye() {
+//        return "Goodbye, Spring!";
+//    }
 
     // Handles requests of the form /hello?name=LaunchCode
-    @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST})
-    public String helloWithQueryParam(@RequestParam String name) {
-        return "Hello, " + name + "!";
-    }
+//    @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST})
+//    public String helloWithQueryParam(@RequestParam String name) {
+//        return "Hello, " + name + "!";
+//    }
 
     // Handles requests of the form /hello/LaunchCode
-    @GetMapping("{name}")
-    public String helloWithPathParam(@PathVariable String name) {
-        return "Hello, " + name + "!";
-    }
+//    @GetMapping("{name}")
+//    public String helloWithPathParam(@PathVariable String name) {
+//        return "Hello, " + name + "!";
+//    }
 
     // /hello/form
 //    @GetMapping("form")
-    @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST} )
+    @RequestMapping(method = RequestMethod.GET)
     public String helloForm() {
         return "<html>" +
                 "<body>" +
-                "<form action='/hello' method='post'>" + // submit a request to /hello
+                "<form method='post'>" + // submit a request to /hello
                 "<input type='text' name='name'>" +
                 "<select name='language'>" +
                 "<option value='english'>English</option>" +
@@ -56,7 +56,8 @@ public class HelloSpringController {
                 "</body>" +
                 "</html>";
     }
-    public static String createMessage(@RequestParam String language, String name) {
+    @PostMapping
+    public static String createMessage(@RequestParam String language,@RequestParam String name) {
         String greeting = "";
         if (language.equals("english")){
             greeting = "Hello, ";
